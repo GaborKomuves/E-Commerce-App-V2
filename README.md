@@ -2,6 +2,8 @@ E-Commerce Application
 
 This is a simple E-Commerce Application built using Spring Boot. It supports product management, order placement, and basic cart functionality.
 
+![image](https://github.com/user-attachments/assets/f8f302df-d132-4b82-831f-25bede4ee220)
+
 Features
 
 Product Management: Add, update, delete, and retrieve products.
