@@ -37,4 +37,6 @@ Endpoint: POST /api/users
 Description: Creates a new user.
 Request Body:
 ![image](https://github.com/user-attachments/assets/c961b23e-96e6-47cd-a5e2-d453e5d73501)
+Description users table:
+![image](https://github.com/user-attachments/assets/b2b1b15d-3740-40bd-88f4-688c59387afd)
 
