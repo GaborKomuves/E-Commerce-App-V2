@@ -1,120 +1,40 @@
-E-Commerce Application
-
-This is a simple E-Commerce Application built using Spring Boot. It supports product management, order placement, and basic cart functionality.
-
-![image](https://github.com/user-attachments/assets/f8f302df-d132-4b82-831f-25bede4ee220)
-
-Features
-
-Product Management: Add, update, delete, and retrieve products.
-
-Order Placement: Place orders based on cart items.
-
-Cart Functionality: Add items to the cart and calculate total amounts.
-
-RESTful API: Endpoints for managing orders, products, and cart.
-
-PostgreSQL Database: Used for storing products, orders, and cart items.
-
-Prerequisites
-
-Java: Version 17 or higher.
-
-Maven: For building and managing dependencies.
-
-PostgreSQL: A running PostgreSQL instance.
-
-Postman (or any API client): For testing the API.
-
-Setup Instructions
-
-Clone the repository:
-
-git clone https://github.com/your-repo/ecommerce-app.git
-cd ecommerce-app
-
-Update the database configuration in src/main/resources/application.properties:
-
-spring.datasource.url=jdbc:postgresql://localhost:5432/ecommerce_db
-spring.datasource.username=your_username
-spring.datasource.password=your_password
-spring.jpa.hibernate.ddl-auto=update
-
-Build the project using Maven:
-
-mvn clean install
-
-Run the application:
-
-mvn spring-boot:run
-
-Access the API at:
-
-http://localhost:8080/api
-
-API Endpoints
-
-Product Endpoints
-
-GET /api/products - Retrieve all products.
-
-GET /api/products/{id} - Retrieve a product by ID.
-
-POST /api/products - Add a new product.
-
-PUT /api/products/{id} - Update a product by ID.
-
-DELETE /api/products/{id} - Delete a product by ID.
-
-Order Endpoints
-
-POST /api/orders/place - Place a new order.
-
-Request Body:
-
-{
-"customerName": "John Doe",
-"customerEmail": "john.doe@example.com"
-}
-
-GET /api/orders - Retrieve all orders.
-
-GET /api/orders/{id} - Retrieve an order by ID.
-
-DELETE /api/orders/{id} - Delete an order by ID.
-
-Testing the API
-
-Use Postman or any API client to test the endpoints. Example for placing an order:
-
-Endpoint: POST /api/orders/place
-
-Headers:
-
-Content-Type: application/json
-
-Body:
-
-{
-"customerName": "John Doe",
-"customerEmail": "john.doe@example.com"
-}
+E-commerce Application Overview
+This project is a back-end implementation of an e-commerce application that leverages Spring Boot, PostgreSQL, and Postman for testing API endpoints. The application is designed to handle core e-commerce functionalities such as user management, product management, cart management, and order processing, adhering to CRUD principles and RESTful API standards.
 
 Technologies Used
+Spring Boot: For developing the back-end REST APIs.
+PostgreSQL: As the relational database to store application data.
+Postman: For testing and simulating API requests.
+Java: As the programming language for business logic implementation.
+Core Features
+User Management:
 
-Spring Boot: Framework for building the application.
+Create User: Add new users with fields like firstname, lastname, username, password, email, and role.
+Read User(s): Fetch details of all users or a specific user.
+Update User: Modify user details.
+Delete User: Remove a user from the system.
+Product Management:
 
-PostgreSQL: Database for persisting data.
+Create Product: Add new products with details such as name, price, and category.
+Read Product(s): Fetch details of all products or specific ones based on filters like category or price.
+Update Product: Modify product details.
+Delete Product: Remove a product.
+Cart Management:
 
-Maven: Dependency management and build tool.
+Add to Cart: Add items to a user's shopping cart.
+View Cart: Retrieve all items in a user's cart.
+Update Cart: Modify quantities of items in the cart.
+Delete Item: Remove an item from the cart.
+Order Management:
 
-Lombok: Simplify Java boilerplate code.
-
-Future Enhancements
-
-Implement authentication and authorization.
-
-Add user management.
-
-Enhance cart functionality with session handling.
+Create Order: Place an order for items in the cart.
+Read Orders: Fetch details of all orders or specific orders by user.
+Update Order Status: Modify the status of an order (e.g., Pending, Shipped).
+Delete Order: Cancel an order.
+API Documentation (Examples)
+User API
+Endpoint: POST /api/users
+Description: Creates a new user.
+Request Body:
+![image](https://github.com/user-attachments/assets/c961b23e-96e6-47cd-a5e2-d453e5d73501)
 
