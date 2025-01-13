@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="styleproduct.css">
+</head>
+<body>
+<header>
+    <h1>DIY E-Commerce</h1>
+    <p>Explore our wide range of products!</p>
+</header>
+<ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="product.html">Products</a></li>
+    <li><a href="cart.html">Cart</a></li>
+    <li><a href="users.html">Users</a></li>
+</ul>
+<main>
+    <section class="product-section">
+        <h2>Available Products</h2>
+        <table class="product-table">
+            <!-- Inside the table -->
+            <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="productTableBody">
+            <!-- Example Product Rows -->
+            <tr>
+                <td>1</td>
+                <td>Drill</td>
+                <td>£25.99</td>
+                <td>Tools</td>
+                <td>
+                    <button class="edit-btn" onclick="editProduct(1)">Edit</button>
+                    <button class="delete-btn" onclick="deleteProduct(1)">Delete</button>
+                </td>
+            </tr>
+            </tbody>
+            <!-- Add Product Button -->
+            <button onclick="addProduct()">Add Product</button>
+
+        </table>
+    </section>
+</main>
+<footer>
+    <p>&copy; 2025 DIY E-Commerce. All Rights Reserved.</p>
+</footer>
+</body>
+</html>

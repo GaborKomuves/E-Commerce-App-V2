@@ -1,47 +1,80 @@
-const baseUrl = "http://localhost:8080/api/products";
+document.addEventListener("DOMContentLoaded", () => {
+    const cartTableBody = document.getElementById("cart-items");
+    const cartTotalElement = document.getElementById("cart-total");
+    const addItemButton = document.getElementById("add-item-button");
+    const addItemModal = document.getElementById("add-item-modal");
+    const closeModal = document.querySelector(".close");
+    const addItemForm = document.getElementById("add-item-form");
 
-// Load all products on page load
-document.addEventListener("DOMContentLoaded", loadProducts);
+    const API_BASE_URL = "http://localhost:8080/api/cart";
 
-function loadProducts() {
-    fetch(baseUrl)
-        .then(response => response.json())
-        .then(data => updateTable(data))
-        .catch(error => console.error("Error loading products:", error));
-}
+    const fetchCartItems = async () => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/items`);
+            const data = await response.json();
+            renderCartItems(data);
+            calculateTotal(data);
+        } catch (error) {
+            console.error("Error fetching cart items:", error);
+        }
+    };
 
-function formatPrice(price) {
-    return new Intl.NumberFormat('en-GB', {
-        style: 'currency',
-        currency: 'GBP'
-    }).format(price);
-}
+    const renderCartItems = (items) => {
+        cartTableBody.innerHTML = "";
+        items.forEach((item) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${item.product.name}</td>
+                <td>${item.quantity}</td>
+                <td>£${item.totalPrice.toFixed(2)}</td>
+                <td>
+                    <button onclick="deleteCartItem(${item.id})" class="primary-button">Delete</button>
+                </td>
+            `;
+            cartTableBody.appendChild(row);
+        });
+    };
 
-function updateTable(products) {
-    const tableBody = document.querySelector("#productTable tbody");
-    tableBody.innerHTML = ""; // Clear existing rows
-    products.forEach(product => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${product.id}</td>
-            <td>${product.name}</td>
-            <td>${formatPrice(product.price)}</td>
-            <td>${product.stock}</td>
-            <td>${product.description}</td>
-            <td>${product.category}</td>
-            <td>
-                <button onclick="editProduct(${product.id})">Edit</button>
-                <button onclick="deleteProduct(${product.id})">Delete</button>
-            </td>
-        `;
-        tableBody.appendChild(row);
+    const calculateTotal = (items) => {
+        const total = items.reduce((sum, item) => sum + item.totalPrice, 0);
+        cartTotalElement.textContent = `Total: £${total.toFixed(2)}`;
+    };
+
+    window.deleteCartItem = async (id) => {
+        try {
+            await fetch(`${API_BASE_URL}/delete/${id}`, { method: "DELETE" });
+            fetchCartItems();
+        } catch (error) {
+            console.error("Error deleting cart item:", error);
+        }
+    };
+
+    addItemButton.addEventListener("click", () => {
+        addItemModal.style.display = "flex";
     });
-}
 
-document.getElementById("lowStockButton").addEventListener("click", () => {
-    const threshold = document.getElementById("lowStockThreshold").value;
-    fetch(`${baseUrl}/low-stock?threshold=${threshold}`)
-        .then(response => response.json())
-        .then(data => updateTable(data))
-        .catch(error => console.error("Error fetching low-stock products:", error));
+    closeModal.addEventListener("click", () => {
+        addItemModal.style.display = "none";
+    });
+
+    addItemForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const product = document.getElementById("product").value;
+        const quantity = document.getElementById("quantity").value;
+
+        try {
+            await fetch(`${API_BASE_URL}/add`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ productId: product, quantity }),
+            });
+            fetchCartItems();
+            addItemModal.style.display = "none";
+            addItemForm.reset();
+        } catch (error) {
+            console.error("Error adding cart item:", error);
+        }
+    });
+
+    fetchCartItems();
 });

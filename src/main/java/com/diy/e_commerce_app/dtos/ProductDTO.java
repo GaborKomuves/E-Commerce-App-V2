@@ -12,5 +12,5 @@ public class ProductDTO {
     private String description;
     private String category;
 
-    //constructor, getter si setter
+    //constructor, getter si setter cu ajutorul @Data addnotation sunt rezolvati
 }

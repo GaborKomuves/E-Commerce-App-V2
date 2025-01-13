@@ -15,5 +15,5 @@ public class CartItemDTO {
     public void setProduct ( Product product ) {
     }
 
-    // Constructori, getter și setter
+    //constructor, getter si setter cu ajutorul @Data addnotation sunt rezolvati
 }
