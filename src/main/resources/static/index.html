@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <h1>E-Commerce App DIY</h1>
+</header>
+<main>
+    <!-- Tab Navigation -->
+    <div class="tab-container">
+        <button class="tab-button active" data-tab="products">Products</button>
+        <button class="tab-button" data-tab="product-selection">Product Selection</button>
+        <button class="tab-button" data-tab="orders">Orders</button>
+        <button class="tab-button" data-tab="cart">Cart</button>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tab-content active" id="products">
+        <h2>Products</h2>
+        <table id="productTable">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div class="tab-content" id="product-selection">
+        <h2>Product Selection</h2>
+        <button id="highPriceFilter">Filter by High Price</button>
+        <button id="lowStockFilter">Filter by Low Stock</button>
+        <button id="categoryFilter">Filter by Category</button>
+    </div>
+
+    <div class="tab-content" id="orders">
+        <h2>Orders</h2>
+        <table id="orderTable">
+            <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Total</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div class="tab-content" id="cart">
+        <h2>Cart</h2>
+        <table id="cartTable">
+            <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</main>
+<footer>
+    <p>&copy; 2025 E-Commerce App DIY. All rights reserved.</p>
+</footer>
+<script src="app.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
